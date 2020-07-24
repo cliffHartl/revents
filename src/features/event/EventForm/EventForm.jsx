@@ -9,9 +9,22 @@ class EventForm extends Component {
     venue: "",
     hostedBy: "",
   };
+
+  componentDidMount() {
+    if (this.props.selectedEvent !== null) {
+      this.setState({
+        ...this.props.selectedEvent,
+      });
+    }
+  }
+
   handleFormSubmit = (evt) => {
     evt.preventDefault();
-    this.props.createEvent(this.state);
+    if (this.state.id) {
+      this.props.updateEvent(this.state);
+    } else {
+      this.props.createEvent(this.state);
+    }
   };
 
   handleInputChange = ({ target: { name, value } }) => {
@@ -19,6 +32,7 @@ class EventForm extends Component {
       [name]: value,
     });
   };
+
   render() {
     const { cancelFormOpen } = this.props;
     const { title, date, city, venue, hostedBy } = this.state;
@@ -41,6 +55,7 @@ class EventForm extends Component {
                 name='date'
                 onChange={this.handleInputChange}
                 type='date'
+                value={date}
                 placeholder='Event Date'
               />
             </Form.Field>
@@ -48,6 +63,7 @@ class EventForm extends Component {
               <label>City</label>
               <input
                 name='city'
+                value={city}
                 onChange={this.handleInputChange}
                 placeholder='City event is taking place'
               />
@@ -56,6 +72,7 @@ class EventForm extends Component {
               <label>Venue</label>
               <input
                 name='venue'
+                value={venue}
                 onChange={this.handleInputChange}
                 placeholder='Enter the Venue of the event'
               />
@@ -64,6 +81,7 @@ class EventForm extends Component {
               <label>Hosted By</label>
               <input
                 name='hostedBy'
+                value={hostedBy}
                 onChange={this.handleInputChange}
                 placeholder='Enter the name of person hosting'
               />
