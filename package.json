@@ -6,7 +6,7 @@
     "cuid": "^2.1.8",
     "date-fns": "^2.15.0",
     "firebase": "^6.0.2",
-    "google-map-react": "^1.1.4",
+    "google-map-react": "^1.1.7",
     "moment": "^2.22.0",
     "node-pre-gyp": "^0.15.0",
     "react": "^16.8.6",
